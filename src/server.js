@@ -1,41 +1,18 @@
 'use strict';
 const express = require('express');
 const cors = require('cors');
+const dogsRouter = require('./dogs/dogs-router')
+const catsRouter = require('./cats/cats-router')
+const peopleRouter = require('./people/people-router')
+const historyRouter = require('./history/history-router')
 
 const app = express();
 app.use(cors());
 
-const cat = [
-  {
-    imageURL:'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg', 
-    imageDescription: 'Orange bengal cat with black stripes lounging on concrete.',
-    name: 'Fluffy',
-    sex: 'Female',
-    age: 2,
-    breed: 'Bengal',
-    story: 'Thrown on the street'
-  }
-]
-
-const dog = [
-  {
-    imageURL: 'http://www.dogster.com/wp-content/uploads/2015/05/Cute%20dog%20listening%20to%20music%201_1.jpg',
-    imageDescription: 'A smiling golden-brown golden retreiver listening to music.',
-    name: 'Zeus',
-    sex: 'Male',
-    age: 3,
-    breed: 'Golden Retriever',
-    story: 'Owner Passed away'
-  }
-]
-
-app.get('/api/cat', (req, res) => {
-  res.json(cat)
-})
-
-app.get('/api/dog', (req, res) => {
-  res.json(dog)
-})
+app.use('/api/dog', dogsRouter)
+app.use('/api/cat', catsRouter)
+app.use('/api/people', peopleRouter)
+app.use('/api/history', historyRouter)
 
 // Catch-all 404
 app.use(function (req, res, next) {
