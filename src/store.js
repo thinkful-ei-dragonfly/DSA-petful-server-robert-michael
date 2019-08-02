@@ -89,6 +89,8 @@ store.people = people
 
 const history = new queue()
 
+history.enqueue({'animal': 'dog', 'person': 'alex' });
+
 store.history = history
 
 
