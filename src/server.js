@@ -7,7 +7,9 @@ const peopleRouter = require('./people/people-router')
 const historyRouter = require('./history/history-router')
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: CLIENT_ORIGIN
+});
 
 app.use('/api/dog', dogsRouter)
 app.use('/api/cat', catsRouter)
