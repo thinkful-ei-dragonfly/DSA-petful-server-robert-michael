@@ -7,11 +7,11 @@ const jsonBodyParser = express.json()
 peopleRouter
   .route('/')
   .get((req, res) => {
-    res.json(store.people.display())
+    res.status(200).json(store.people.display())
   })
   .post(jsonBodyParser, (req, res) => {
     store.people.enqueue(req.body.name)
-    res.json(store.people.peek())
+    res.status(201).json(store.people.peek())
   })
 
 module.exports = peopleRouter

@@ -11,7 +11,7 @@ dogsRouter
     store.history.enqueue({animal: store.dogs.peek(), person: store.people.peek()})
     store.people.dequeue()
     store.dogs.dequeue()
-    res.json(store.dogs.peek())
+    res.status(204).json(store.dogs.peek())
   })
 
 module.exports = dogsRouter

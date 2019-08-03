@@ -5,7 +5,7 @@ const historyRouter = express.Router()
 historyRouter
   .route('/')
   .get((req, res) => {
-    res.json(store.history.display())
+    res.status(200).json(store.history.display())
   })
 
 module.exports = historyRouter
