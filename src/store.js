@@ -78,21 +78,13 @@ store.cats = cats
 
 const people = new queue()
 
-people.enqueue('rando')
-people.enqueue('rando')
-people.enqueue('rando')
-people.enqueue('rando')
-
 store.people = people
 
 // add history to store
 
 const history = new queue()
 
-history.enqueue({'animal': 'dog', 'person': 'alex' });
-
 store.history = history
-
 
 
 module.exports = store
