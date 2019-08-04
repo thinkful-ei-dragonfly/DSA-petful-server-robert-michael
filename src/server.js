@@ -1,15 +1,17 @@
 'use strict';
 const express = require('express');
 const cors = require('cors');
+const config = require('./config');
 const dogsRouter = require('./dogs/dogs-router')
 const catsRouter = require('./cats/cats-router')
 const peopleRouter = require('./people/people-router')
 const historyRouter = require('./history/history-router')
 
 const app = express();
+
 app.use(cors({
-  origin: CLIENT_ORIGIN
-});
+  origin: config.CLIENT_ORIGIN
+}))
 
 app.use('/api/dog', dogsRouter)
 app.use('/api/cat', catsRouter)
