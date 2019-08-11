@@ -1,13 +1,18 @@
 'use strict';
-const express = require('express');
-const cors = require('cors');
-const config = require('./config');
+const express = require('express')
+const cors = require('cors')
+const config = require('./config')
+const morgan = require('morgan')
 const dogsRouter = require('./dogs/dogs-router')
 const catsRouter = require('./cats/cats-router')
 const peopleRouter = require('./people/people-router')
 const historyRouter = require('./history/history-router')
 
 const app = express();
+
+app.use(morgan((config.NODE_ENV === 'production') ? 'tiny' : 'common', {
+  skip: () => config.NODE_ENV === 'test',
+}))
 
 app.use(cors({
   origin: config.CLIENT_ORIGIN
@@ -35,4 +40,6 @@ app.use(function (err, req, res, next) {
   });
 });
 
-app.listen(process.env.PORT || 8000)
+app.listen(config.PORT, () => {
+  console.log(`Server listening at http://localhost:${config.PORT}`)
+})
