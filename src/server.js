@@ -1,6 +1,6 @@
 'use strict';
 const express = require('express')
-const cors = require('cors')
+// const cors = require('cors')
 const config = require('./config')
 const morgan = require('morgan')
 const dogsRouter = require('./dogs/dogs-router')
