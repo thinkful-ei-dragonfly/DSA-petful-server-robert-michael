@@ -14,9 +14,9 @@ app.use(morgan((config.NODE_ENV === 'production') ? 'tiny' : 'common', {
   skip: () => config.NODE_ENV === 'test',
 }))
 
-app.use(cors({
-  origin: config.CLIENT_ORIGIN
-}))
+// app.use(cors({
+//   origin: config.CLIENT_ORIGIN
+// }))
 
 app.use('/api/dog', dogsRouter)
 app.use('/api/cat', catsRouter)
