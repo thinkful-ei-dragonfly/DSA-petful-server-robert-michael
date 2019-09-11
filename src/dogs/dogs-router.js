@@ -1,22 +1,23 @@
 const express = require('express')
-const store = require('../store')
+const dogsService = require('./dogs-service')
 const dogsRouter = express.Router()
 
 dogsRouter
   .route('/')
   .get((req, res) => {
-    res.status(200).json(store.dogs.peek())
+    res.status(200).json(dogsService.getDog())
   })
-  .delete((req, res) => {
-    if (store.dogs && store.people) {
-      store.history.enqueue({animal: store.dogs.peek(), person: store.people.peek()})
-      store.people.dequeue()
-      store.dogs.dequeue()
-      console.log(store.dogs.peek())
-      return res.status(204).json(store.dogs.peek())
-    } else {
-      res.status(400).json({ error: 'missing dog or person' })
+  .delete((req, res, next) => {
+    const dog = dogsService.deleteDog()
+    if (!dog) {
+      return res
+        .status(400)
+        .json({
+          error: "There are no dogs left"
+        })
     }
+    return res.json(dog)
   })
+
 
 module.exports = dogsRouter

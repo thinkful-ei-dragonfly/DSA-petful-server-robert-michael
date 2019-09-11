@@ -32,13 +32,16 @@ app.use(function (req, res, next) {
 
 // Catch-all Error handler
 // Add NODE_ENV check to prevent stacktrace leak
-app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
-  res.json({
-    message: err.message,
-    error: app.get('env') === 'development' ? err : {}
-  });
-});
+app.use(function errorHandler(error, req, res, next) {
+  let response
+  if (config.NODE_ENV === 'production') {
+    response = { error: 'Server error' }
+  } else {
+    console.error(error)
+    response = { error: error.message, object: error }
+  }
+  res.status(500).json(response)
+})
 
 app.listen(config.PORT, () => {
   console.log(`Server listening at http://localhost:${config.PORT}`)

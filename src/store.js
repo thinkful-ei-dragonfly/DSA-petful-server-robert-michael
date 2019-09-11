@@ -5,6 +5,16 @@ const store = {
   cats: [],
   history: [],
   people: [],
+  populateDogs: function () {
+    const dogs = new queue()
+    dogsArray.forEach(dog => dogs.enqueue(dog))
+    store.dogs = dogs
+  },
+  populateCats: function () {
+    const cats = new queue()
+    catArray.forEach(cat => cats.enqueue(cat))
+    store.cats = cats
+  }
 }
 
 // add dogs to store
@@ -39,11 +49,7 @@ const dogsArray = [
   },
 ]
 
-const dogs = new queue()
-
-dogsArray.forEach(dog => dogs.enqueue(dog))
-
-store.dogs = dogs
+store.populateDogs()
 
 // add cats to store
 
@@ -68,11 +74,8 @@ const catArray = [
   },
 ]
 
-const cats = new queue()
+store.populateCats()
 
-catArray.forEach(cat => cats.enqueue(cat))
-
-store.cats = cats
 
 // add people to store
 
